@@ -1,27 +1,64 @@
 <template>
-  <nav class="ml-2 w-full">
-    <div class="max-w-screen-xl px-4 py-3 mx-auto md:px-6">
-        <div class="flex items-center justify-center">
-            <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
-                <li v-for="(item, index) in props.valueArr" :key="index">
-                    <RouterLink :to="item.path" class="text-gray-900 dark:text-white hover:underline" aria-current="page">{{ item.name }}</RouterLink>
-                </li>
-                <!-- <li>
-                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Features</a>
-                </li> -->
-            </ul>
-        </div>
-    </div>
-</nav>
+  <header class="relative w-full justify-center flex">
+    <nav x-ref="tabs" class="flex">
+      <RouterLink
+        v-for="(item, index) in valueArr"
+        :key="index"
+        x-spread="tab"
+        class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition"
+        :class="{ 'is-active': activeIndex === index,
+                      'is-inactive': activeIndex !== index}"
+        :to="item.path"
+        @click="clickNavBarHandle(index)"
+        >{{ item.name }}</RouterLink
+      >
+      <!-- <RouterLink x-spread="tab" class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition" to="#"
+        >Symptoms</RouterLink
+      >
+      <RouterLink x-spread="tab" class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition" to="#"
+        >Safety checklist</RouterLink
+      >
+      <RouterLink x-spread="tab" class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition" to="#"
+        >Local regulations</RouterLink
+      > -->
+    </nav>
+
+    <div x-spread="indicator" class="border-t-2 border-indigo-600 absolute left-0 bottom-0 transition-all duration-500"></div>
+  </header>
 </template>
-<script lang="ts" setup="props">
-import  { defineComponent, type PropType } from 'vue';
-import type {NavigationProps} from '../typings/props'
+<script lang="ts">
+import { defineComponent, type PropType, ref } from 'vue';
+import type { NavigationProps } from '../typings/props';
 
 import { RouterLink } from 'vue-router';
 
-const props = defineProps<{valueArr: NavigationProps[]}>()
+export default defineComponent({
+  props: {
+    valueArr: {
+      type: Object as PropType<NavigationProps[]>,
+      default: []
+    }
+  },
+  setup({ valueArr }) {
+    const activeIndex = ref(-1);
+    const clickNavBarHandle = (index: number) => {
+      activeIndex.value = index
+    }
+    return { valueArr, activeIndex, clickNavBarHandle };
+  }
+});
 </script>
 <style lang="scss" scoped>
+@tailwind components;
 
+@layer components {
+  body {
+    .is-active {
+      @apply border-b border-pink-300 text-pink-300;
+    }
+    .is-inactive {
+      @apply text-gray-600;
+    }
+  }
+}
 </style>

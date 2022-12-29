@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import type { ItemListProps } from "../../typings/props";
-import ItemContent from "./item-content.vue";
-
+import type { ItemListProps } from '../../typings/props';
+import ItemContent from './item-content.vue';
 
 const props = defineProps<{ listItem: ItemListProps[] }>();
 </script>
 
 <template>
-  <ItemContent v-for="(item, index) in props.listItem" :key="index" :path="item.linkTo">
-    <template #icon>
-      <component :is="item.component" />
-    </template>
-    <template #heading>{{ item.title }}</template>
-    {{ item.content }}
-  </ItemContent>
+  <div class="ml-2">
+    <ItemContent v-for="(item, index) in props.listItem" :key="index" :path="item.linkTo">
+      <template #icon>
+        <component :is="item.component" />
+      </template>
+      <template #heading>{{ item.title }}</template>
+      {{ item.content }}
+    </ItemContent>
+  </div>
 
   <!-- <WelcomeItem>
     <template #icon>
