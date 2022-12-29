@@ -1,0 +1,79 @@
+<template>
+ <div class="modal-overlay">
+     <div class="modal-wrapper">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <slot name="header">
+                     <h3 class="modal-title">Edit information</h3>
+                 </slot>
+             </div>
+             <div class="modal-body">
+                 <slot name="body">
+                     <h3 class="modal-title">
+                         This is body, there is no content here
+                     </h3>
+                 </slot>
+             </div>
+             <div class="modal-footer">
+                 <slot name="footer">
+                     <app-button
+                         contentButton="Close"
+                     />
+                 </slot>
+             </div>
+         </div>
+     </div>
+ </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-core';
+
+export default defineComponent({
+ name: 'Modal',
+ setup() {
+ }
+});
+</script>
+
+<style lang="scss">
+@tailwind components;
+
+@layer components {
+ body {
+     .modal {
+         &-overlay {
+             @apply flex flex-col space-y-4 min-w-fit h-screen max-h-full fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none 
+             focus:outline-none bg-opacity-50 bg-gray-100;
+         }
+
+         &-wrapper {
+             @apply relative px-4 w-full max-w-4xl h-full md:h-auto overflow-x-auto;
+         }
+
+         &-content {
+             @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
+         }
+
+         &-header {
+             @apply flex justify-between items-center px-4 py-3;
+         }
+
+         &-title {
+             @apply text-2xl font-bold text-red-500;
+         }
+
+         &-body {
+             @apply p-6 space-y-6;
+
+             &-option-view {
+             }
+         }
+
+         &-footer {
+             @apply flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600;
+         }
+     }
+ }
+}
+</style>

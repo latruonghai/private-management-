@@ -1,7 +1,7 @@
 import HomeView  from './HomeView.vue';
 import type { Meta, Story } from '@storybook/vue3';
 export default {
-  title: 'Components/HomeView',
+  title: 'Views/HomeView',
   component: HomeView,
 } as Meta;
 

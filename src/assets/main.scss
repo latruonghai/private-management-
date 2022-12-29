@@ -11,6 +11,19 @@
 //   font-weight: normal;
 // }
 
+body {
+  background: #fff;
+  color: #1c1e21;
+  display: block;
+  direction: ltr;
+  line-height: 1.34;
+  margin: 0;
+  padding: 0;
+  unicode-bidi: embed;
+  .app{
+    height: 100%;
+  }
+}
 a,
 .green {
   text-decoration: none;
@@ -24,15 +37,15 @@ a,
   }
 }
 
-// @media (min-width: 1024px) {
-//   body {
-//     display: flex;
-//     place-items: center;
-//   }
+@media (max-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
 
-//   #app {
-//     display: grid;
-//     grid-template-columns: 1fr 1fr;
-//     padding: 0 2rem;
-//   }
-// }
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
