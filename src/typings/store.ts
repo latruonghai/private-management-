@@ -12,3 +12,4 @@ interface ToggleState {
 type StateGlobal = TaskItem | TodoListItemArray | null;
 
 export type { TaskItem, TodoListItemArray, StateGlobal, ToggleState };
+

@@ -1,9 +1,25 @@
-<script setup lang="ts">
-import Header from './layout/header.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Header from './layout/header.vue';
+import { useStatusApp } from './stores/app-status.store';
+import { storeToRefs } from 'pinia';
+
+export default defineComponent({
+  components: {
+    Header
+  },
+  setup() {
+    const loading = useStatusApp();
+    const { loadingState } = storeToRefs(loading);
+
+    return { loadingState };
+  }
+});
 </script>
 
 <template>
   <Header></Header>
+  <app-spinner v-show="loadingState" />
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 

@@ -5,10 +5,12 @@ import { useCompletedToDoItem } from '../../stores/completed-todo-item.store';
 import { storeToRefs } from 'pinia';
 import { filterObject } from '../../helpers/collection.helpers';
 import listViewVue from './task-list/list-view.vue';
+import i18n from '../../i18n';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   components: {
-   'list-view': listViewVue
+    'list-view': listViewVue
   },
   setup() {
     // provide("store", {methods, state});
@@ -20,6 +22,7 @@ export default defineComponent({
     // const item = ref<TodoListItem>();
     // const item = ref<TodoListItem[]>(todoListArray.value);y
     // const completedState = ref(false);
+    const i18n = useI18n({ useScope: 'global' })
     const worksCompleted = computed(() => {
       return filterObject(todoListArray.value, function (o: any) {
         return o.done === true;
@@ -34,6 +37,8 @@ export default defineComponent({
     // watch
     return {
       toggleModal,
+      t: i18n.t,
+      i18n,
       todoListArray: todoListArray.value,
       completedState: filterTodoList,
       worksCompleted,
@@ -60,4 +65,3 @@ export default defineComponent({
         </template>
     </list-view> -->
 </template>
-
