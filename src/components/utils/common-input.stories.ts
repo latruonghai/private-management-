@@ -28,8 +28,7 @@ Primary.args = {
   placeholder: 'example test',
   typeName: 'text',
   onChanges: (event: any) => {
-    console.log(typeof event);
-    console.log('🚀 ~ file: common-input.stories.ts:32 ~ event', event);
+
   }
 };
 

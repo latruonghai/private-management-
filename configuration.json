@@ -1,0 +1,7 @@
+{
+  "baseURL": "https://localhost:8080",
+  "weather": {
+   "URL": "https://api.openweathermap.org/data/2.5/",
+   "key": "d0a87305bd579369b97ba25beda34837"
+  }
+}

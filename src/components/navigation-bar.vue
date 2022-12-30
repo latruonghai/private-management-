@@ -6,10 +6,10 @@
         :key="index"
         x-spread="tab"
         class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition"
-        :class="{ 'is-active': activeIndex === index,
-                      'is-inactive': activeIndex !== index}"
+        :class="{ 'is-active': statusApp.tabIndex === index,
+                      'is-inactive': statusApp.tabIndex !== index}"
         :to="item.path"
-        @click="clickNavBarHandle(index)"
+
         >{{ item.name }}</RouterLink
       >
       <!-- <RouterLink x-spread="tab" class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition" to="#"
@@ -31,6 +31,7 @@ import { defineComponent, type PropType, ref } from 'vue';
 import type { NavigationProps } from '../typings/props';
 
 import { RouterLink } from 'vue-router';
+import { useStatusApp } from '../stores/app-status.store';
 
 export default defineComponent({
   props: {
@@ -40,11 +41,9 @@ export default defineComponent({
     }
   },
   setup({ valueArr }) {
-    const activeIndex = ref(-1);
-    const clickNavBarHandle = (index: number) => {
-      activeIndex.value = index
-    }
-    return { valueArr, activeIndex, clickNavBarHandle };
+    const statusApp = useStatusApp();
+    // const activeIndex = ref(-1);
+    return { valueArr, statusApp };
   }
 });
 </script>

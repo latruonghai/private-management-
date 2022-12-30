@@ -18,13 +18,8 @@ export default defineComponent({
     order: Number,
     idName: String
   },
-  mounted(){
-   // console.log(this)
-   console.log("🚀 ~ file: item-task.vue:23 ~ mounted ~ this", this);
-  },
   setup(props: any) {
     const todoListStore = useTodoList();
-    console.log('🚀 ~ file: item-task.vue:23 ~ setup ~ todoListStore', todoListStore);
     const toggleModal = useToggleModal();
     const { setFilterState } = useCompletedToDoItem();
     const { toggleModalAction } = toggleModal;
